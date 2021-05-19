@@ -1,4 +1,4 @@
-from .dexter_notification import DexterNotification
+from dexter_notification import DexterNotification
 
 dn = DexterNotification(service_json={
     "type": "service_account",

@@ -1,4 +1,4 @@
-from .board_10th_results_2021 import Chhattisgarh10thBoardResult2021
+from board_10th_results_2021 import Chhattisgarh10thBoardResult2021
 
 
 def test_result():

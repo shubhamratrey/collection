@@ -16,10 +16,14 @@
 
 [comment]: <> (Here is a set of minimal samples for each Cloud Functions trigger types.)
 
-### [Scrape Chhattisgarh 10th Board Results 2021](/chhattisgarh-10th-board-results)
+### [Scrap Chhattisgarh 10th Board Results 2021](/chhattisgarh-10th-board-results)
 
 Script to check Chhattisgarh 10th Board Result. Also, you can export results to **CSV** with the start to end range of
 roll numbers.
+
+### [Find COVID Vaccination Slot](/covid19-vaccinations)
+
+Find COVID Vaccination slot availability at your district
 
 ### [Send FCM notifications](/fcm-notifications)
 
@@ -27,7 +31,7 @@ Script to send a Firebase Cloud Messaging (FCM) notification
 
 ## Contributing
 
-I'll love that you contribute to the project. Please create a **Pull Request** for the change 
+I'll love that you contribute to the project. Please create a **Pull Request** for the change
 
 ## License
 

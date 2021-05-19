@@ -11,14 +11,14 @@ class Chhattisgarh10thBoardResult2021:
         self.RESPONSE_TEXT = ''
         self.RESULT_DATA = {}
         self.BEAUTIFUL_SOUP = None
-        self.set_response_text()
-        self.init_beautiful_soup()
-        self.set_result_data()
         if self.DEBUG:
             print()
             for i in self.__dict__:
                 print(i, ':', self.__dict__[i])
             print("------")
+        self.set_response_text()
+        self.init_beautiful_soup()
+        self.set_result_data()
 
     @property
     def payload(self):
