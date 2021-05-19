@@ -27,7 +27,7 @@ Script to send a Firebase Cloud Messaging (FCM) notification
 
 ## Contributing
 
-I'll love that you contribute to the project.
+I'll love that you contribute to the project. Please create a **Pull Request** for the change 
 
 ## License
 
