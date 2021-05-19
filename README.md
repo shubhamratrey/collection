@@ -16,16 +16,14 @@
 
 [comment]: <> (Here is a set of minimal samples for each Cloud Functions trigger types.)
 
-### [Scrape Chhattisgarh Board Results 2021](/chhattisgarh-board-results)
+### [Scrape Chhattisgarh 10th Board Results 2021](/chhattisgarh-10th-board-results)
 
-This quickstart sample demonstrates using **Cloud Functions** triggered by **Firebase Realtime Database or Firestore
-events**. The function transforms message text written to Firestore to uppercase.
+Script to check Chhattisgarh 10th Board Result. Also, you can export results to **CSV** with the start to end range of
+roll numbers.
 
 ### [Send FCM notifications](/fcm-notifications)
 
-This sample demonstrates how to send a Firebase Cloud Messaging (FCM) notification from a Realtime Database triggered
-Function when users get new followers. The sample also features a Web UI to experience the FCM notification. Uses a
-Realtime Database trigger.
+Script to send a Firebase Cloud Messaging (FCM) notification
 
 ## Contributing
 
