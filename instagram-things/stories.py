@@ -2,16 +2,16 @@ from client import InstagramClient
 import math
 
 
-class Reels(object):
+class Stories(object):
     DEFAULTS = {
-        'reel_tray': "/feed/reels_tray/",
-        'reels_media': "/feed/reels_media/"
+        'reel_tray': "/api/v1/feed/reels_tray/",
+        'reels_media': "/api/v1/feed/reels_media/"
     }
 
     def __init__(self, cookies, session=None, debug=False):
         self.client = InstagramClient(cookies=cookies, session=session, debug=debug)
 
-    def get_available_reels_user_ids(self, filter_user_ids=[], **kwargs):
+    def get_available_stories_user_ids(self, filter_user_ids=[], **kwargs):
         """
         Parses GET request options and dispatches a request
         """
@@ -20,7 +20,6 @@ class Reels(object):
         tray_list = resp_json.get('tray', {})
         reel_ids = []
         for reel_item in tray_list:
-            print(reel_item)
             user_dict = reel_item['user']
             if filter_user_ids:
                 if user_dict['pk'] in filter_user_ids:
@@ -31,7 +30,7 @@ class Reels(object):
                 reel_ids.append(reel_item['id'])
         return reel_ids
 
-    def get_reels_using_user_ids(self, user_ids, page_size=25, **kwargs):
+    def get_stories_using_user_ids(self, user_ids, page_size=25, **kwargs):
         """
         :param page_size:
         :param user_ids:

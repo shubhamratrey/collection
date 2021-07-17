@@ -4,13 +4,11 @@ import json
 
 class InstagramClient:
     DEFAULTS = {
-        'base_url': 'https://i.instagram.com/api/v1',
-        'reel_tray': "/feed/reels_tray/",
-        'reels_media': "/feed/reels_media/"
+        'base_url': 'https://i.instagram.com',
     }
 
     REQUIRED_COOKIES = ['csrftoken', 'ds_user_id', 'fbm_124024574287414', 'fbsr_124024574287414', 'ig_did', 'ig_nrcb',
-                        'mid', 'rur', 'sessionid', 'shbid', 'shbts', 'fbsr_124024574287414']
+                        'mid', 'rur', 'sessionid', 'shbid', 'shbts']
 
     def __init__(self, cookies, session=None, debug=False):
         self.DEBUG = debug
@@ -35,7 +33,7 @@ class InstagramClient:
                 AVAILABLE_COOKIES.append(name)
         if self.is_debug:
             print("Available Cookies: ", AVAILABLE_COOKIES)
-        if len(AVAILABLE_COOKIES) != len(self.REQUIRED_COOKIES):
+        if len(AVAILABLE_COOKIES) < len(self.REQUIRED_COOKIES):
             missing_cookies = list(filter(lambda x: x not in AVAILABLE_COOKIES, self.REQUIRED_COOKIES))
             raise RuntimeError('Cookies missing: {}'.format(missing_cookies))
 
@@ -66,8 +64,8 @@ class InstagramClient:
 
         if 'headers' not in options:
             options['headers'] = {}
-
-        options['headers'].update({'Content-type': 'application/json'})
+        if 'content-type' not in options['headers']:
+            options['headers'].update({'content-type': 'application/json'})
 
         return data, options
 
@@ -80,6 +78,10 @@ class InstagramClient:
         url = "{}{}".format(self.BASE_URL, path)
 
         response = getattr(self.session, method)(url, **options)
+        for history_item in response.history:
+            if history_item.status_code > 300:
+                raise Exception('Invalid Cache. Please update your cache list')
+
         if (response.status_code >= 200) and (response.status_code < 300):
             return response.json()
         else:
