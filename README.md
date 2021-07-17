@@ -16,6 +16,10 @@
 
 [comment]: <> (Here is a set of minimal samples for each Cloud Functions trigger types.)
 
+### [Instagram of Things](/instagram-things)
+
+Now automate everything of instagram. Get Photos, Stories and Reels or Post a picture and Story from on place. 
+
 ### [Scrap Chhattisgarh 10th Board Results 2021](/chhattisgarh-10th-board-results)
 
 Script to check Chhattisgarh 10th Board Result. Also, you can export results to **CSV** with the start to end range of
