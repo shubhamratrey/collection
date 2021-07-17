@@ -1,5 +1,4 @@
 import requests
-import json
 
 
 class InstagramClient:
@@ -12,6 +11,7 @@ class InstagramClient:
 
     def __init__(self, cookies, session=None, debug=False):
         self.DEBUG = debug
+        self.CSRF_TOKEN = ""
         self._check_cookies(cookies=cookies)
         self._update_session(cookies=cookies, session=session)
 
@@ -31,6 +31,8 @@ class InstagramClient:
             value = cookie_item['value']
             if name in self.REQUIRED_COOKIES and value:
                 AVAILABLE_COOKIES.append(name)
+            if name == 'csrftoken':
+                self.CSRF_TOKEN = value
         if self.is_debug:
             print("Available Cookies: ", AVAILABLE_COOKIES)
         if len(AVAILABLE_COOKIES) < len(self.REQUIRED_COOKIES):
@@ -41,27 +43,26 @@ class InstagramClient:
         """
         Updates The resource data and header options
         """
-        self.session = session or requests.Session()
+        self.SESSION = session or requests.Session()
         for cookie_item in cookies:
-            self.session.cookies.set(name=cookie_item['name'],
+            self.SESSION.cookies.set(name=cookie_item['name'],
                                      value=cookie_item['value'],
                                      domain=cookie_item['domain'],
                                      path=cookie_item['path'])
 
     def _update_user_agent_header(self, options):
         user_agent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 105.0.0.11.118 (iPhone11,8; iOS 12_3_1; en_US; en-US; scale=2.00; 828x1792; 165586599)'
-        if 'headers' in options:
-            options['headers']['User-Agent'] = user_agent
-        else:
-            options['headers'] = {'User-Agent': user_agent}
+        if 'headers' not in options:
+            options['headers'] = {}
+        if 'user-agent' not in options['headers']:
+            options['headers'].update({'user-agent': user_agent})
+
         return options
 
     def _update_request(self, data, options):
         """
         Updates The resource data and header options
         """
-        data = json.dumps(data)
-
         if 'headers' not in options:
             options['headers'] = {}
         if 'content-type' not in options['headers']:
@@ -77,7 +78,7 @@ class InstagramClient:
 
         url = "{}{}".format(self.BASE_URL, path)
 
-        response = getattr(self.session, method)(url, **options)
+        response = getattr(self.SESSION, method)(url, **options)
         for history_item in response.history:
             if history_item.status_code > 300:
                 raise Exception('Invalid Cache. Please update your cache list')
@@ -102,6 +103,10 @@ class InstagramClient:
     @property
     def base_url(self):
         return str(self.BASE_URL)
+
+    @property
+    def csrf_token(self):
+        return str(self.CSRF_TOKEN)
 
     def get(self, path, params, **options):
         """
