@@ -70,13 +70,13 @@ class Stories(object):
                 for item in reel.get('items', []):
                     if len(item.get('video_versions', [])) > 0:
                         video_url = item.get('video_versions', [])[0].get('url', '')
-                        data[user.get('username', '')].get('video_reels').append({
+                        data[user.get('username', '')].get('video_stories').append({
                             'url': video_url,
                             'id': item['pk']
                         })
                     elif len(item.get('image_versions2', {}).get('candidates', [])) > 0:
                         image_url = item.get('image_versions2', {}).get('candidates', [])[0].get('url', '')
-                        data[user.get('username', '')].get('image_reels').append({
+                        data[user.get('username', '')].get('image_stories').append({
                             'url': image_url,
                             'id': item['pk']
                         })
