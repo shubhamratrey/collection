@@ -43,7 +43,7 @@ class Reels(object):
         data.update({
             'items': [],
             'has_more': resp_json['paging_info']['more_available'],
-            'max_id': resp_json['paging_info']['max_id']
+            'max_id': resp_json['paging_info'].get('max_id', None)
         })
         for media_data in resp_json['items']:
             media_item = media_data['media']
