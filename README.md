@@ -18,7 +18,7 @@
 
 ### [Instagram of Things](/instagram-things)
 
-Now automate everything of instagram. Get Photos, Stories and Reels or Post a picture and Story from on place. 
+Now automate everything of instagram. Get Photos, Stories and Reels or Post a picture and Story from one place. 
 
 ### [Scrap Chhattisgarh 10th Board Results 2021](/chhattisgarh-10th-board-results)
 
