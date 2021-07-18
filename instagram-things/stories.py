@@ -4,8 +4,8 @@ import math
 
 class Stories(object):
     DEFAULTS = {
-        'reel_tray': "/api/v1/feed/reels_tray/",
-        'reels_media': "/api/v1/feed/reels_media/"
+        'stories_tray': "/api/v1/feed/reels_tray/",
+        'stories_media': "/api/v1/feed/reels_media/"
     }
 
     def __init__(self, cookies, session=None, debug=False):
@@ -16,7 +16,7 @@ class Stories(object):
         Parses GET request options and dispatches a request
         """
 
-        resp_json = self.client.get(self.DEFAULTS['reel_tray'], params={}, **kwargs)
+        resp_json = self.client.get(self.DEFAULTS['stories_tray'], params={}, **kwargs)
         tray_list = resp_json.get('tray', {})
         reel_ids = []
         for reel_item in tray_list:
@@ -52,7 +52,7 @@ class Stories(object):
         while page_index <= n_pages:
             page_index += 1
             params = {'reel_ids': user_ids[start_index:end_index]}
-            resp_json = self.client.get(self.DEFAULTS['reels_media'], params=params, **kwargs)
+            resp_json = self.client.get(self.DEFAULTS['stories_media'], params=params, **kwargs)
             reels = resp_json.get('reels', {})
             for reel_id in reels:
                 reel = reels.get(str(reel_id), {})
