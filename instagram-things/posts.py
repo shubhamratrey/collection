@@ -1,4 +1,3 @@
-from datetime import datetime
 import json
 from client import InstagramClient
 
@@ -13,12 +12,8 @@ class Posts(object):
     def __init__(self, cookies, session=None, debug=False):
         self.client = InstagramClient(cookies=cookies, session=session, debug=debug)
 
-    @property
-    def micro_time(self):
-        return int(datetime.now().timestamp())
-
     def upload_photo(self, data) -> dict:
-        micro_time = self.micro_time
+        micro_time = self.client.micro_time
         headers = {
             "content-type": "image/jpeg",
             "content-length": "1",
@@ -37,6 +32,13 @@ class Posts(object):
         return resp_json
 
     def post_a_picture(self, data, caption):
+        """
+        Upload photo to Instagram
+
+        :param data: Photo file (String)
+        :param caption: Media description (String)
+        :return:
+        """
         upload_photo_resp = self.upload_photo(data=data)
         upload_id = upload_photo_resp['upload_id']
         headers = {

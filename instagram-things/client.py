@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 
 class InstagramClient:
@@ -118,6 +119,10 @@ class InstagramClient:
         if not self.PROFILE_PRIMARY_KEY:
             return 0
         return int(self.PROFILE_PRIMARY_KEY)
+
+    @property
+    def micro_time(self):
+        return int(datetime.now().timestamp())
 
     def get(self, path, params, **options):
         """
