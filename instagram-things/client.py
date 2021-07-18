@@ -11,7 +11,6 @@ class InstagramClient:
 
     def __init__(self, cookies, session=None, debug=False):
         self.DEBUG = debug
-        self.CSRF_TOKEN = ""
         self._check_cookies(cookies=cookies)
         self._update_session(cookies=cookies, session=session)
 
@@ -27,17 +26,21 @@ class InstagramClient:
             raise RuntimeError('Cookies not found')
         AVAILABLE_COOKIES = []
         for cookie_item in cookies:
-            name = cookie_item['name']
-            value = cookie_item['value']
+            name, value = cookie_item['name'], cookie_item['value']
             if name in self.REQUIRED_COOKIES and value:
                 AVAILABLE_COOKIES.append(name)
-            if name == 'csrftoken':
-                self.CSRF_TOKEN = value
+                self._update_properties(name=name, value=value)
         if self.is_debug:
             print("Available Cookies: ", AVAILABLE_COOKIES)
         if len(AVAILABLE_COOKIES) < len(self.REQUIRED_COOKIES):
             missing_cookies = list(filter(lambda x: x not in AVAILABLE_COOKIES, self.REQUIRED_COOKIES))
             raise RuntimeError('Cookies missing: {}'.format(missing_cookies))
+
+    def _update_properties(self, name, value):
+        if name == 'csrftoken':
+            self.CSRF_TOKEN = value
+        elif name == 'ds_user_id':
+            self.PROFILE_PRIMARY_KEY = value
 
     def _update_session(self, cookies, session=None):
         """
@@ -105,8 +108,16 @@ class InstagramClient:
         return str(self.BASE_URL)
 
     @property
-    def csrf_token(self):
+    def csrf_token(self) -> str:
+        if not self.CSRF_TOKEN:
+            return ''
         return str(self.CSRF_TOKEN)
+
+    @property
+    def profile_id(self) -> int:
+        if not self.PROFILE_PRIMARY_KEY:
+            return 0
+        return int(self.PROFILE_PRIMARY_KEY)
 
     def get(self, path, params, **options):
         """
