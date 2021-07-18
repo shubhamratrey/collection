@@ -1,5 +1,6 @@
 from stories import Stories
 from posts import Posts
+from reels import Reels
 import urllib.request
 
 cookies = []
@@ -27,3 +28,11 @@ if __name__ == '__main__':
     client = Posts(cookies=cookies, debug=True)
     story_result = client.post_a_story(data=photo, caption="testing. Please Ignore")
     print(story_result)
+
+    # Post a User Reels
+    client = Reels(cookies=cookies, debug=True)
+    post_result = client.get_reels_using_user_id(user_id=1301203788)
+    print(post_result)
+    if post_result['max_id']:
+        post_result = client.get_reels_using_user_id(user_id=1301203788, max_id=post_result['max_id'])
+        print(post_result)

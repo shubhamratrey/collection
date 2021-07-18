@@ -59,3 +59,17 @@ photo = img.read()
 client = Posts(cookies=cookies, debug=True)
 result = client.post_a_story(data=photo, caption="testing. Please Ignore")
 ```
+
+### Get user's list of reels
+
+```
+from stories import Stories
+cookies = [] (paste the cookies list here)
+user_ids = [] (you can use from above list)
+client = Reels(cookies=cookies, debug=True)
+post_result = client.get_reels_using_user_id(user_id=1301203788)
+print(post_result)
+if post_result['max_id']:
+   post_result = client.get_reels_using_user_id(user_id=1301203788, max_id=post_result['max_id'])
+   print(post_result)
+```

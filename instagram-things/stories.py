@@ -63,8 +63,8 @@ class Stories(object):
                         'username': user.get('username', ''),
                         'full_name': user.get('full_name', ''),
                         'profile_pic_url': user.get('profile_pic_url', ''),
-                        'video_reels': [],
-                        'image_reels': []
+                        'video_stories': [],
+                        'image_stories': []
                     }
 
                 for item in reel.get('items', []):

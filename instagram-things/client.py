@@ -85,7 +85,7 @@ class InstagramClient:
         response = getattr(self.SESSION, method)(url, **options)
         for history_item in response.history:
             if history_item.status_code > 300:
-                raise Exception('Invalid Cache. Please update your cache list')
+                raise Exception('Invalid Cache. Please update your cache list. Error text: {}'.format(response.text))
 
         if (response.status_code >= 200) and (response.status_code < 300):
             return response.json()
