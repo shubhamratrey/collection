@@ -72,13 +72,17 @@ class Stories(object):
                         video_url = item.get('video_versions', [])[0].get('url', '')
                         data[user.get('username', '')].get('video_stories').append({
                             'url': video_url,
-                            'id': item['pk']
+                            'id': item['pk'],
+                            'is_close_friend': True if item.get('audience', None) and item[
+                                'audience'] == 'besties' else False,
                         })
                     elif len(item.get('image_versions2', {}).get('candidates', [])) > 0:
                         image_url = item.get('image_versions2', {}).get('candidates', [])[0].get('url', '')
                         data[user.get('username', '')].get('image_stories').append({
                             'url': image_url,
-                            'id': item['pk']
+                            'id': item['pk'],
+                            'is_close_friend': True if item.get('audience', None) and item[
+                                'audience'] == 'besties' else False,
                         })
 
             start_index = end_index

@@ -1,4 +1,4 @@
-# Instagram - Stories, Reels, And Post
+# Instagram - Stories, Reels, Post, Followers & Followings
 
 ## Prerequisites
 
@@ -72,4 +72,24 @@ print(post_result)
 if post_result['max_id']:
    post_result = client.get_reels_using_user_id(user_id=1301203788, max_id=post_result['max_id'])
    print(post_result)
+```
+
+### Get follower list of user
+
+```
+from followers import Followers
+cookies = [] (paste the cookies list here)
+client = Followers(cookies=cookies, debug=True)
+followers_profiles = client.get_all_followers_profiles_using_user_id(user_id=124)
+print(followers_profiles)
+```
+
+### Get following list of user
+
+```
+from following import Following
+cookies = [] (paste the cookies list here)
+client = Following(cookies=cookies, debug=True)
+following_profiles = client.get_all_following_profiles_using_user_id(user_id=124)
+print(following_profiles)
 ```
