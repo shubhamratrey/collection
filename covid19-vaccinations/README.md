@@ -11,9 +11,9 @@ requests
 ### Get Your District Id
 
 1. Find your **cowin_state_id** by
-   hitting [API](https://api.ratrey.co/v1/covid19/locations/) <br /> ``https://api.ratrey.co/v1/covid19/locations/``
+   hitting [API](https://ratrey.in/v1/covid19/locations/) <br /> ``https://api.ratrey.co/v1/covid19/locations/``
 2. Add **cowin_state_id** to param and hit [API](https://api.ratrey.co/v1/covid19/locations/)
-   again <br /> ``https://api.ratrey.co/v1/covid19/locations/?state_id=7``
+   again <br /> ``https://ratrey.in/v1/covid19/locations/?state_id=7``
 3. Use the **cowin_district_id** to check slots availability
 
 ### Check for slots
@@ -30,6 +30,6 @@ print(sf.is_45_plus_slot_available)
 
 ### Or you can check by using this [API](https://api.ratrey.co/v1/covid19/slots/?district_slug=korba)
 
-`https://api.ratrey.co/v1/covid19/slots/?district_slug=korba`
+`https://ratrey.in/v1/covid19/slots/?district_slug=korba`
 
 
