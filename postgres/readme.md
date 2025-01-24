@@ -35,4 +35,4 @@ This folder contains SQL scripts for managing PostgreSQL roles and queries, incl
 
 ---
 
-Please contact @vikas before running any query.
+Please run script carefully on production
