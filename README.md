@@ -47,4 +47,4 @@ I'll love that you contribute to the project. Please create a **Pull Request** f
 
 ## License
 
-© Shubh, 2021. Licensed under an [Apache-2](LICENSE) license.
+© Shubh, 2025. Licensed under an [Apache-2](LICENSE) license.
